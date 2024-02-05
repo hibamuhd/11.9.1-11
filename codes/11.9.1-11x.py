@@ -1,21 +1,25 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Function to calculate a_n
-def sequence(n):
-    return -1 + 3 * (3 ** n) if n >= 0 else 0
+# Define the function for a(n)
+def sequence_a(n):
+    return -1 if n == 0 else 3 * 3**n
 
-# Generate values for n in the range from 5 to -5
-n_values = np.arange(5, -6, -1)
+# Generate values for n from 0 to 10
+n_values = np.arange(0, 11, 1)
 
-# Calculate corresponding values for a_n
-a_n_values = [sequence(n) for n in n_values]
+# Calculate the corresponding values for a(n)
+a_values = [sequence_a(n) for n in n_values]
 
-# Plot the sequence
-plt.stem(n_values, a_n_values, basefmt='k-', linefmt='b-', markerfmt='bo', use_line_collection=True)
-plt.title(r'$a_n = -u_n + 3(3^n u_n)$')
-plt.xlabel('$n$')
-plt.ylabel('$a_n$')
+# Plot the sequence with smaller y-axis values
+plt.stem(n_values, a_values, use_line_collection=True)
+plt.xlabel('n')
+plt.ylabel('a(n)')
+plt.title('Sequence $a(n) = -u_n + 3(3^n u_n)$')
+
+# Set y-axis limits to have smaller values
+plt.ylim(min(a_values) - 1, max(a_values) + 1)
+
 plt.grid(True)
 plt.show()
 
